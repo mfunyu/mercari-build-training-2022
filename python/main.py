@@ -23,6 +23,12 @@ app.add_middleware(
 def root():
     return {"message": "Hello, world!"}
 
+@app.get("/items")
+def get_items():
+    with open('item.json', 'r') as f:
+        data = json.load(f)
+    return data
+
 @app.post("/items")
 def add_item(name: str = Form(...), category: str = Form(...)):
     logger.info(f"Receive item: {name}")
