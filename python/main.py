@@ -27,11 +27,12 @@ def root():
 def add_item(name: str = Form(...), category: str = Form(...)):
     logger.info(f"Receive item: {name}")
     
-    with open('item.json', 'a+') as f:
+    with open('item.json', 'r') as f:
         try:
             data = json.load(f)
         except:
             data = {"items": []}
+    with open('item.json', 'w') as f:
         data["items"].append({"name": name, "category": category})
         f.write(json.dumps(data))
     
