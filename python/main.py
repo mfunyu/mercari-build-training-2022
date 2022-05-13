@@ -1,7 +1,7 @@
 import os
 import logging
 import pathlib
-import json
+import db 
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,22 +25,16 @@ def root():
 
 @app.get("/items")
 def get_items():
-    with open('item.json', 'r') as f:
-        data = json.load(f)
-    return data
+    items = db.get_items()
+    print(items)
+
+    return {"items": items}
 
 @app.post("/items")
 def add_item(name: str = Form(...), category: str = Form(...)):
     logger.info(f"Receive item: {name}")
-    
-    with open('item.json', 'r') as f:
-        try:
-            data = json.load(f)
-        except:
-            data = {"items": []}
-    with open('item.json', 'w') as f:
-        data["items"].append({"name": name, "category": category})
-        f.write(json.dumps(data))
+
+    db.add_item(name, category)
     
     return {"message": f"item received: {name}"}
 
