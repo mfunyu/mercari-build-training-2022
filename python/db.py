@@ -23,7 +23,7 @@ def get_items():
 
 def get_new_id():
     max_id = db_exec("SELECT MAX (id) FROM items")
-    max_id = max_id[0][0]
+    max_id = max_id[0]['MAX (id)']
     if not max_id:
         max_id = 0
     new_id = max_id + 1
