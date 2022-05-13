@@ -36,10 +36,10 @@ def search_item(keyword: str = ""):
     return {"items": items}
 
 @app.post("/items")
-def add_item(name: str = Form(...), category: str = Form(...)):
+def add_item(name: str = Form(...), category: str = Form(...), image: str = Form(...)):
     logger.info(f"Receive item: {name}")
 
-    db.add_item(name, category)
+    db.add_item(name, category, image)
     
     return {"message": f"item received: {name}"}
 

@@ -32,9 +32,9 @@ def get_new_id():
 def find_item(name):
     return db_exec(f"SELECT * FROM items WHERE name = '{name}'")
 
-def add_item(name, category):
+def add_item(name, category, image):
     new_id = get_new_id()
-    db_exec(f"INSERT INTO items VALUES ({new_id}, '{name}', '{category}')")
+    db_exec(f"INSERT INTO items VALUES ({new_id}, '{name}', '{category}', '{image}')")
 
 
 def db_exec(instruction):
