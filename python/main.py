@@ -26,8 +26,13 @@ def root():
 @app.get("/items")
 def get_items():
     items = db.get_items()
-    print(items)
 
+    return {"items": items}
+
+@app.get("/search")
+def search_item(keyword: str = ""):
+    items = db.find_item(keyword)
+    
     return {"items": items}
 
 @app.post("/items")
