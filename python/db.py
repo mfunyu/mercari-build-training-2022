@@ -18,7 +18,6 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-
 def get_items():
     return db_exec("SELECT * FROM items")
 
@@ -37,8 +36,8 @@ def add_item(name, category):
 
 def db_exec(instruction):
     conn = sqlite3.connect(database_file)
-    c = conn.cursor()
     conn.row_factory = dict_factory
+    c = conn.cursor()
     c.execute(instruction)
 
     ret = c.fetchall()
