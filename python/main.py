@@ -43,6 +43,10 @@ def add_item(name: str = Form(...), category: str = Form(...), image: str = Form
     
     return {"message": f"item received: {name}"}
 
+@app.get("/items/{item_id}")
+def get_item_details(item_id):
+    return db.find_item(int(item_id))
+
 @app.get("/image/{items_image}")
 async def get_image(items_image):
     # Create image path

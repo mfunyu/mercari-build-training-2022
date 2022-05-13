@@ -29,8 +29,11 @@ def get_new_id():
     new_id = max_id + 1
     return new_id
 
-def find_item(name):
-    return db_exec(f"SELECT * FROM items WHERE name = '{name}'")
+def find_item(value):
+    if type(value) is int:
+        return db_exec(f"SELECT * FROM items WHERE id = {value}")
+
+    return db_exec(f"SELECT * FROM items WHERE name = '{value}'")
 
 def add_item(name, category, image):
     new_id = get_new_id()
