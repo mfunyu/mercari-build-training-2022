@@ -10,7 +10,11 @@ def dict_factory(cursor, row):
     return d
 
 def get_items():
-    return db_exec("SELECT items.id, items.name, category.name, items.image FROM items INNER JOIN category ON items.category = category.id")
+    return db_exec("""
+        SELECT items.id, items.name, category.name, items.image
+        FROM items INNER JOIN category
+        ON items.category = category.id
+    """)
 
 def get_new_id(table):
     max_id = db_exec(f"SELECT MAX (id) FROM {table}")
