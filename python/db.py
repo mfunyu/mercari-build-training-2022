@@ -1,14 +1,5 @@
 import sqlite3
 
-# c = conn.cursor()
-# c.execute("""CREATE TABLE items(
-#     id INT,
-#     name TEXT,
-#     category TEXT,
-#     value JSON
-# )
-# """)
-
 database_file = '../db/mercari.sqlite3'
 
 
