@@ -17,7 +17,6 @@ def create_tables(conn, c):
 
     with open(sql_file, 'r') as f:
         sql_as_string = f.read()
-        print(sql_as_string)
         c.executescript(sql_as_string)
 
     conn.commit()
