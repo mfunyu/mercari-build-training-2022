@@ -19,10 +19,10 @@ def dict_factory(cursor, row):
     return d
 
 def get_items():
-    return db_exec("SELECT * FROM items")
+    return db_exec("SELECT items.id, items.name, category.name, items.image FROM items INNER JOIN category ON items.category = category.id")
 
-def get_new_id():
-    max_id = db_exec("SELECT MAX (id) FROM items")
+def get_new_id(table):
+    max_id = db_exec(f"SELECT MAX (id) FROM {table}")
     max_id = max_id[0]['MAX (id)']
     if not max_id:
         max_id = 0
@@ -36,9 +36,15 @@ def find_item(value):
     return db_exec(f"SELECT * FROM items WHERE name = '{value}'")
 
 def add_item(name, category, image):
-    new_id = get_new_id()
-    db_exec(f"INSERT INTO items VALUES ({new_id}, '{name}', '{category}', '{image}')")
+    id = db_exec(f"SELECT * FROM category WHERE name = '{category}'")
+    if id:
+        id = id[0]['id']
+    if not id:
+        id = get_new_id("category")
+        db_exec(f"INSERT INTO category VALUES ({id}, '{category}')")
 
+    new_id = get_new_id("items")
+    db_exec(f"INSERT INTO items VALUES ({new_id}, '{name}', {id}, '{image}')")
 
 def db_exec(instruction):
     conn = sqlite3.connect(database_file)
