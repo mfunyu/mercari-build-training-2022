@@ -1,7 +1,35 @@
 import sqlite3
 
+sql_file = '../db/items.db'
 database_file = '../db/mercari.sqlite3'
 
+def is_table_exist(c):
+    c.execute("""
+        SELECT COUNT(*) FROM sqlite_master 
+        WHERE TYPE='table' AND name='items'
+    """)
+    if c.fetchone()[0] == 0:
+        return False
+    return True
+
+
+def create_tables(conn, c):
+
+    with open(sql_file, 'r') as f:
+        sql_as_string = f.read()
+        print(sql_as_string)
+        c.executescript(sql_as_string)
+
+    conn.commit()
+
+def init():
+    conn = sqlite3.connect(database_file)
+    c = conn.cursor()
+
+    if not is_table_exist(c):
+        create_tables(conn, c)
+
+    conn.close()
 
 def dict_factory(cursor, row):
     d = {}

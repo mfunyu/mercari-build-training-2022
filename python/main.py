@@ -18,6 +18,7 @@ app.add_middleware(
     allow_methods=["GET","POST","PUT","DELETE"],
     allow_headers=["*"],
 )
+db.init()
 
 @app.get("/")
 def root():
