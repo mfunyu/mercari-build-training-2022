@@ -36,11 +36,12 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-def get_items():
-    return db_exec("""
+def get_items(where = ""):
+    return db_exec(f"""
         SELECT items.id, items.name, category.name, items.image
         FROM items INNER JOIN category
         ON items.category = category.id
+        {where}
     """)
 
 def get_new_id(table):
@@ -53,9 +54,9 @@ def get_new_id(table):
 
 def find_item(value):
     if type(value) is int:
-        return db_exec(f"SELECT * FROM items WHERE id = {value}")
+        return get_items(f"WHERE items.id = {value}")
 
-    return db_exec(f"SELECT * FROM items WHERE name = '{value}'")
+    return get_items(f"WHERE items.name = '{value}'")
 
 def add_item(name, category, image):
     id = db_exec(f"SELECT * FROM category WHERE name = '{category}'")
