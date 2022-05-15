@@ -2,7 +2,8 @@ import os
 import logging
 import pathlib
 import db 
-from fastapi import FastAPI, Form, HTTPException
+import hashlib
+from fastapi import FastAPI, Form, File, UploadFile, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -37,11 +38,17 @@ def search_item(keyword: str = ""):
     return {"items": items}
 
 @app.post("/items")
-def add_item(name: str = Form(...), category: str = Form(...), image: str = Form(...)):
+def add_item(name: str = Form(...), category: str = Form(...), image: UploadFile = File(...)):
     logger.info(f"Receive item: {name}")
-
-    db.add_item(name, category, image)
     
+    try:
+        contents = image.file.read()
+    except:
+        logger.error("File read error")
+
+    image_name = hashlib.sha256(contents).hexdigest() + ".jpg"
+    db.add_item(name, category, image_name)
+
     return {"message": f"item received: {name}"}
 
 @app.get("/items/{item_id}")
