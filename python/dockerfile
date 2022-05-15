@@ -1,8 +1,10 @@
 FROM python:3.8-slim-buster
 
+COPY db/items.db db/
+
 WORKDIR /app
 
-COPY . .
+COPY python/ .
 
 RUN pip3 install -r requirements.txt
 
