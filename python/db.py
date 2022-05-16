@@ -38,7 +38,7 @@ def dict_factory(cursor, row):
 
 def get_items(where = ""):
     return db_exec(f"""
-        SELECT items.id, items.name, category.name, items.image_filename
+        SELECT items.id, items.name as name, category.name as category, items.image_filename
         FROM items INNER JOIN category
         ON items.category = category.id
         {where}
