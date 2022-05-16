@@ -2,7 +2,7 @@ CREATE TABLE items(
 	id INT,
 	name TEXT,
 	category INT,
-	image TEXT
+	image_filename TEXT
 );
 
 CREATE TABLE category(
