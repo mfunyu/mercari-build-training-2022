@@ -7,10 +7,11 @@
   min-height: 8vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: left;
   font-size: calc(10px + 1vmin);
   color: white;
+  padding-left: 3%;
 }
 
 .Listing {
@@ -24,20 +25,65 @@
   color: white;
 }
 
+input[type="text"] {
+  width: 20%;
+  font-size: 16px;
+  margin: 0.1em;
+  padding: 0.5em;
+  border: solid 2px #e3e6ea;
+  border-radius: 4px;
+}
+
+/* on focus */
+input[type="text"]:focus {
+  border-color: gray;
+  outline: 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button, label {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 1vmin;
+  font-size: 16px;
+  background-color: #fff;
+  color: #222427;
+}
+
 .ItemList {
-  background-color: #222427;
+  display: inline-block;
   min-height: 8vh;
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: left;
   font-size: calc(10px + 1vmin);
-  color: white;
+  color: black;
+  width: 22vmin;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2vmin;
+  margin: 1vmin;
+  position:relative;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+div.container {
+  padding: 10px 20px;
+}
+
 
 @keyframes App-logo-spin {
   from {
