@@ -29,7 +29,7 @@ def root():
 def get_items():
     items = db.get_items()
 
-    return items
+    return {"items": items}
 
 @app.get("/search")
 def search_item(keyword: str = ""):
