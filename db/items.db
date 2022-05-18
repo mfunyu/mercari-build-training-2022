@@ -1,0 +1,11 @@
+CREATE TABLE items(
+	id INT,
+	name TEXT,
+	category INT,
+	image TEXT
+);
+
+CREATE TABLE category(
+	id INT,
+	name TEXT
+);
