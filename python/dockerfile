@@ -1,4 +1,11 @@
-FROM alpine
+FROM python:3.8-slim-buster
 
-# STEP4-4では以下は変更しない
-CMD ["python", "-V"]
+COPY db/items.db db/
+
+WORKDIR /app
+
+COPY python/ .
+
+RUN pip3 install -r requirements.txt
+
+CMD ["uvicorn", "main:app", "--reload", "--port", "9000", "--host", "0.0.0.0"]
