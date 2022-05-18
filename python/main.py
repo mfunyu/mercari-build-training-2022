@@ -46,8 +46,13 @@ def add_item(name: str = Form(...), category: str = Form(...), image: UploadFile
     except:
         logger.error("File read error")
 
-    image_name = hashlib.sha256(contents).hexdigest() + ".jpg"
+    image_name = hashlib.sha256(image.filename.replace(".jpg", "").encode('utf-8')).hexdigest() + ".jpg"
     db.add_item(name, category, image_name)
+    
+    # save under image/
+    path = images / image_name
+    with open(path, "wb") as f:
+        f.write(contents)
 
     return {"message": f"item received: {name}"}
 
