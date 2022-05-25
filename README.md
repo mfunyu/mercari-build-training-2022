@@ -1,5 +1,12 @@
 # Build@Mercari Training Program 2022
 
+# Description
+
+This is an Individual Assignments at Build@Mercari 2022 training program.<br>
+The goal is to create a simple Mercari web listing function.
+The taske are composed with 6 steps.
+
+# Demo
 <img width="755" alt="Screen Shot 2022-05-25 at 12 31 13" src="https://user-images.githubusercontent.com/60470877/170173956-a6c8a069-53a2-4a99-aff4-a28e02321991.png">
 
 
@@ -38,7 +45,7 @@ image/
 ```
 
 ---
-# Description
+# Instruction
 This is @mfunyu's build training repository.
 
 Build trainingの前半では個人で課題に取り組んでもらい、Web開発の基礎知識をつけていただきます。
