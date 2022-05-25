@@ -1,5 +1,44 @@
 # Build@Mercari Training Program 2022
 
+<img width="755" alt="Screen Shot 2022-05-25 at 12 31 13" src="https://user-images.githubusercontent.com/60470877/170173956-a6c8a069-53a2-4a99-aff4-a28e02321991.png">
+
+
+
+# Intallation & Usage
+### requirement
+> **Docker**
+>  - Install: https://www.docker.com/products/docker-desktop/
+
+### clone
+```
+git clone https://github.com/mfunyu/mercari-build-training-2022.git
+```
+### run
+```
+cd mercari-build-training-2022
+docker-compose up --build
+```
+### Access
+> http://localhost:3000/
+
+# Features
+
+Upload items by entering the name and category and choosing image for the time.
+
+Smaple image files are located under `image/` directory
+```
+image/
+├── avocado.jpg
+├── cactus.jpg
+├── cherry.jpg
+├── clock.jpg
+├── cone.jpg
+├── donuts.jpg
+└── phone.jpg
+```
+
+---
+# Description
 This is @mfunyu's build training repository.
 
 Build trainingの前半では個人で課題に取り組んでもらい、Web開発の基礎知識をつけていただきます。
